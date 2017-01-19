@@ -1,3 +1,6 @@
+# Tutorial from:
+# http://genomicsclass.github.io/book/pages/dplyr_tutorial.html
+
 library(dplyr)
 
 # Read in the CSV and print the first few rows

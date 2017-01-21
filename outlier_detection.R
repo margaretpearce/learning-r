@@ -57,5 +57,27 @@ abline(h = 4*mean(cooksd, na.rm=T), col="red")
 
 # Add labels
 text(x=1:length(cooksd)+1, y=cooksd, 
-     labels=ifelse(cooksd > 4*mean(cooksd, na.rm=T),names(cooksd), ""),
+     labels=ifelse(cooksd > 4*mean(cooksd, na.rm=T), names(cooksd), ""),
      col="red")
+
+# outlierTest: shows tht row 243 is most extreme
+car::outlierTest(mod)
+
+# Outliers package
+library(outliers)
+set.seed(1234)
+y = rnorm(100)
+outlier(y) # most extreme observation from the mean
+outlier(y, opposite = TRUE) # fetch from the other side (left of mean)
+
+set.seed(1234)
+x = rnorm(10)
+scores(x) # z-scores: (x - mean)/sd
+scores(x, type="chisq")
+scores(x, type="t")
+scores(x, type="chisq", prob=0.9) # beyond 90th %ile based on chi-sq
+scores(x, type="chisq", prob=0.95)
+scores(x, type="z", prob=0.95)
+scores(x, type="t", prob=0.95)
+
+# Treat by imputation, capping, prediction...

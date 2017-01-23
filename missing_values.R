@@ -37,7 +37,7 @@ completeData <- complete(imputed_data,2)
 fit <- with(data=completeData, exp=lm(Sepal.Width ~ Sepal.Length + Petal.Width))
 
 
-# Trying with another library
+# Trying with another library: Amelia
 library(Amelia)
 
 iris.mis <- prodNA(iris, noNA=0.1)
@@ -55,4 +55,21 @@ amelia_fit$imputations[[5]]$Sepal.Length
 summary(amelia_fit$imputations[[5]])
 
 # Export the output to csv files
-write.amelia(amelia_fit, file.stem="imputed_data_set")
+write.amelia(amelia_fit, file.stem="output/imputed_data_set")
+
+
+# missForest builds RF models for each variable, then uses the model to predict missing values
+library(missForest)
+
+# Impute missing values, using all parameters as default values
+iris.imp <- missForest(iris.mis)
+
+# Check imputed values
+iris.imp$ximp
+
+# Check imputation error (normalized mean squared error, proportion of falsely classified)
+iris.imp$OOBerror
+
+# Compare actual data accuracy
+iris.err <- mixError(iris.imp$ximp, iris.mis, iris)
+iris.err

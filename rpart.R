@@ -32,3 +32,15 @@ summary(fit) # detailed summary of splits
 # Plot the tree
 plot(fit, uniform = TRUE, main="Classification Tree for Iris")
 text(fit, use.n = TRUE, all = TRUE, cex = 0.8)
+
+# Regression tree example
+fitr <- rpart(Sepal.Length ~ Species + Sepal.Width + Petal.Length + Petal.Width, 
+              method="anova",
+              data=data)
+
+printcp(fitr)
+plotcp(fitr)
+summary(fitr)
+
+plot(fitr, uniform=TRUE, main="Regression tree for Sepal length")
+text(fitr, use.n=TRUE, all=TRUE, cex=.8)

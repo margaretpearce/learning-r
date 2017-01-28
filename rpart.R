@@ -44,3 +44,4 @@ summary(fitr)
 
 plot(fitr, uniform=TRUE, main="Regression tree for Sepal length")
 text(fitr, use.n=TRUE, all=TRUE, cex=.8)
+post(fitr, file="output/regtree.ps", title="Regression Tree for Sepal length")

@@ -14,5 +14,27 @@ yday(bday) # day of the year
 wday(bday + years(1), label=T) # day of the week a year later
 365 %% 7 # 365 mod 7 == how many days should it shift?
 
-# days of the week for next 100 years.
+# Days of the week for next 100 years.
 table(sapply(1:100, function(x) wday(bday + years(x), label=T)))
+
+# Today's date
+this_day <- today()
+this_day
+wday(this_day)
+
+# Today's date and time
+this_moment <- now()
+this_moment
+hour(this_moment)
+minute(this_moment)
+second(this_moment)
+rbind(hour(this_moment), minute(this_moment), second(this_moment))
+
+# Different input formats for dates
+ymd_format <- ymd("1989-05-17")
+ymd_format
+year(ymd_format)
+
+# Different internal R structure (not just a string)
+class(ymd_format)
+

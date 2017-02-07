@@ -38,3 +38,11 @@ year(ymd_format)
 # Different internal R structure (not just a string)
 class(ymd_format)
 
+# No quotes
+dmy(25081985)
+
+# Missing "0" - fails (not 8 digits)
+ymd("192016")
+
+# Slashes
+ymd("1920/1/2")

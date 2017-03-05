@@ -24,3 +24,17 @@ scatterplot3d(SES, MEANSES, MathAch, main="3D Scatterplot example")
 linreg_model = lm(MathAch ~ SES + MEANSES)
 summary(linreg_model)
 
+# Run scatterplot again plotting results in model
+model <- scatterplot3d(SES, MEANSES, MathAch, main="3D Scatterplot with Linear Regression")
+model$plane3d(linreg_model)
+
+# Set up three data frames with numeric, factors, and mixed
+mathmix <- data.frame(SES, MathAch, MEANSES, School=factor(School), 
+                      Minority=factor(Minority), Sex=factor(Sex))
+mathfact <- data.frame(School=factor(School), Minority=factor(Minority), Sex=factor(Sex))
+mathnum <- data.frame(SES, MathAch, MEANSES)
+
+require(tabplot)
+
+# Plot numeric fields only
+tableplot(mathnum)

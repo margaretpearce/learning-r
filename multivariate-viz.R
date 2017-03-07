@@ -38,3 +38,9 @@ require(tabplot)
 
 # Plot numeric fields only
 tableplot(mathnum)
+
+# Plot factor variables only
+tableplot(mathfact)
+
+# All 6
+tableplot(mathmix)
